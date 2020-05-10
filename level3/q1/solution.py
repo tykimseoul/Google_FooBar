@@ -5,15 +5,17 @@ def solution(x, y):
     x = long(x)
     y = long(y)
     gen = 0
-    while (x, y) != (1, 1):
+    while min(x, y) != 1:
         if x > y:
-            x -= y
-            gen += 1
+            gen += x // y
+            x %= y
         elif x < y:
-            y -= x
-            gen += 1
+            gen += y // x
+            y %= x
         else:
-            break
+            return 'impossible'
+    gen += max(x, y) - min(x, y)
     return str(gen)
 
-print(solution(2,1))
+
+print(solution(4, 7))
